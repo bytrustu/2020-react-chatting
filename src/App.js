@@ -10,6 +10,7 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import firebase from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  clearUser,
   setUser,
 } from './redux/actions/user_action';
 import Loading from './components/Loading';
@@ -23,10 +24,11 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        history.push('/');
         dispatch(setUser(user));
+        history.push('/');
       } else {
         history.push('/login');
+        dispatch(clearUser());
       }
     });
   }, []);
