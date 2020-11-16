@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
+  useHistory,
 } from 'react-router-dom';
 import ChatPage from './components/ChatPage/ChatPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
+import firebase from './firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setUser,
+} from './redux/actions/user_action';
+import Loading from './components/Loading';
 
 function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={ChatPage} exact={true} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegisterPage} />
-      </Switch>
-    </Router>
-  );
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.user.isLoading);
+
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        history.push('/');
+        dispatch(setUser(user));
+      } else {
+        history.push('/login');
+      }
+    });
+  }, []);
+
+
+  return isLoading ? <Loading/> : (
+    <Switch>
+      <Route exact path="/" component={ChatPage} exact />
+      <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/register" component={RegisterPage} />
+    </Switch>
+  )
 }
 
 export default App;
