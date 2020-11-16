@@ -32,12 +32,14 @@ body {
 }
 
 .auth-wrapper p {
-    color: #bf1650;
+    color: #dc3545;
+    font-size: 12px;
 }
 
 .auth-wrapper p::before {
     display: inline;
-    content: "⚠ ";
+    content: "👉";
+    margin-right: 5px;
 }
 
 .auth-wrapper input {
