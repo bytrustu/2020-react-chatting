@@ -776,3 +776,105 @@ body {
 .summary-container.summary-page {
     min-height: calc( 100vh - 260px );
 }
+
+.modal {
+    background-color: rgba(1, 1, 1, 0.3);
+}
+
+.modal-dialog {
+    top: 15%;
+}
+
+.modal-backdrop.show {
+    /*opacity: .3;*/
+    background-color: transparent;
+}
+
+.modal-content {
+    border: 1px solid #ececec;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.modal-header {
+    position: relative;
+    border-bottom: unset;
+    padding: 45px 45px 0;
+}
+
+.modal-title {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.modal-header .close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 1em;
+    right: 1em;
+    margin: unset;
+    padding: unset;
+}
+
+.modal-body {
+    padding: 35px 75px 0;
+    font-size: 13px;
+}
+
+.modal-footer {
+    position: relative;
+    border-top: unset;
+    padding: 15px 35px 30px;
+}
+
+.modal-footer button {
+    min-width: 90px;
+    font-size: 16px;
+}
+
+.btn {
+    border: unset;
+    border-radius: 1px;
+    font-size: 14px;
+    padding: .45rem .75rem;
+    vertical-align: top;
+}
+.btn:not(.btn-sm .btn-xs) { padding: .45rem .95rem; }
+.btn-xs { padding: 0 .25rem; }
+.btn-primary { background-color: #357dde !important; }
+.btn-primary:hover { background-color: #2d6cbe !important; }
+
+.btn-danger { background-color: #dc3545 !important; }
+.btn-danger:hover { background-color: #c5392f !important; }
+
+.btn-default {
+    background-color: #b3b3b3;
+    color: #fff;
+}
+.btn-light {
+    background-color: #ececec;
+}
+
+.btn-default:not(:disabled):not(.disabled).active:focus, .btn-default:not(:disabled):not(.disabled):active:focus, .show>.btn-default.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(193, 193, 193, 0.5);
+}
+
+.btn-default:not(:disabled):not(.disabled).active, .btn-default:not(:disabled):not(.disabled):active, .show>.btn-default.dropdown-toggle {
+    color: #fff;
+    background-color: #a0a0a0;
+    border-color: #b21f2d;
+}
+
+.btn-default.focus, .btn-default:focus {
+    color: #fff;
+    background-color: #a0a0a0;
+    border-color: #bd2130;
+    box-shadow: 0 0 0 0.2rem rgba(193, 193, 193, 0.5);
+}
+
+.btn-default:hover {
+    color: #fff;
+    background-color: #a0a0a0;
+    border-color: #bd2130;
+}
