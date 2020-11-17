@@ -1,0 +1,1 @@
+export const isEuqalJSON = (a, b) => JSON.stringify(a) === JSON.stringify(b);

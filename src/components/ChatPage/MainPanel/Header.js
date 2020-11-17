@@ -13,8 +13,8 @@ const Header = () => {
     }
   };
 
-  const [show, setShow] = useState(true);
-  const handleShow = () => setShow(false);
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
