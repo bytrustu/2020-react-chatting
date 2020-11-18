@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import MenuLoading from '../Loading/MenuLoading';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
+import Favorite from './Favorite';
+import { useSelector } from 'react-redux';
 
 const MessageHeader = ({ currentChatRoom }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
   const handleFavorite = () => setIsFavorite(!isFavorite);
   return (
 
@@ -16,11 +17,10 @@ const MessageHeader = ({ currentChatRoom }) => {
               <span className="subject-title position-relative" >
                 {currentChatRoom.name}
                 {
-                  isFavorite ?
-                    <BsHeartFill class="ml-2 text-danger" style={{ cursor: 'pointer'}} onClick={handleFavorite}/>
-                    :
-                    <BsHeart class="ml-2 text-dark" style={{ cursor: 'pointer'}} onClick={handleFavorite}/>
+                  !currentChatRoom.private
+                  && <Favorite handleFavorite={handleFavorite}/>
                 }
+
                 <span className="font-weight-normal d-inline-block position-absolute"
                       style={{
                         marginTop: '4px',
@@ -33,10 +33,6 @@ const MessageHeader = ({ currentChatRoom }) => {
                 🔖 <span className="d-inline-block ml-2">{currentChatRoom.description}</span>
               </span>
               </span>
-
-
-
-
             </>
           )
           :

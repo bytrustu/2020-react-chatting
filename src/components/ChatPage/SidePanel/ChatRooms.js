@@ -1,5 +1,6 @@
 import React from 'react';
 import MenuLoading from '../Loading/MenuLoading';
+import { Badge } from 'react-bootstrap';
 
 const ChatRooms = ({ room, hanleChangeCurrentChatRoom }) => {
 
@@ -13,12 +14,12 @@ const ChatRooms = ({ room, hanleChangeCurrentChatRoom }) => {
         {room.length === 0 ? <MenuLoading /> : room.map(element => {
           element = { ...element, private: false };
           return (
-            <li>
+            <li className="position-relative">
               <a href="#" title={element.name} key={element.id} onClick={() => hanleChangeCurrentChatRoom(element)}>
                 <span># {element.name}</span>
               </a>
             </li>
-          )
+          );
         })}
       </ul>
     </li>

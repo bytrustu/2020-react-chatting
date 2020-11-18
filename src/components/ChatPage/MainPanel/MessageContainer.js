@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import mime from 'mime-types';
 import { v4 as uuid } from 'uuid';
 import MessageForm from './MessageForm';
+import MenuLoading from '../Loading/MenuLoading';
 
 const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
 
@@ -157,34 +158,39 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
       {
         (percent > 0 && percent < 100) && <ProgressBar now={percent} />
       }
-        <article className="main-content mt-3">
-          <div className="row" style={{ height: '80%' }}>
-            <div className="col-12">
-              <div className="summary-container position-relative border-gray">
-                <Message chats={searchText ? searchChats : chats} />
-              </div>
+      <article className="main-content mt-3">
+        <div className="row" style={{ height: '80%' }}>
+          <div className="col-12">
+            <div className="summary-container position-relative border-gray">
+              {
+                chats.length === 0 ?
+                  <MenuLoading />
+                  :
+                  <Message chats={searchText ? searchChats : chats} />
+              }
             </div>
           </div>
-          <div className="row" style={{ height: '20%' }}>
-            <div className="col-12">
-              <div className="border-gray w-auto" style={{
-                height: '100%',
-                border: '1px solid #ececec',
-              }}>
-                <MessageForm
-                  handleSubmit={handleSubmit}
-                  content={content}
-                  handleOnChange={handleOnChange}
-                  inputRef={inputRef}
-                  loading={loading}
-                  handleOpenImageUpload={handleOpenImageUpload}
-                  handleUploadImage={handleUploadImage}
-                  fileRef={fileRef}
-                />
-              </div>
+        </div>
+        <div className="row" style={{ height: '20%' }}>
+          <div className="col-12">
+            <div className="border-gray w-auto" style={{
+              height: '100%',
+              border: '1px solid #ececec',
+            }}>
+              <MessageForm
+                handleSubmit={handleSubmit}
+                content={content}
+                handleOnChange={handleOnChange}
+                inputRef={inputRef}
+                loading={loading}
+                handleOpenImageUpload={handleOpenImageUpload}
+                handleUploadImage={handleUploadImage}
+                fileRef={fileRef}
+              />
             </div>
           </div>
-        </article>
+        </div>
+      </article>
     </>
 
   );

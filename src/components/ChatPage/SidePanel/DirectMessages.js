@@ -1,4 +1,5 @@
 import React from 'react';
+import MenuLoading from '../Loading/MenuLoading';
 
 const DirectMessages = ({ users = [], hanleChangeCurrentChatRoom, currentUser }) => {
   const getChatRoomId = userId => {
@@ -29,15 +30,16 @@ const DirectMessages = ({ users = [], hanleChangeCurrentChatRoom, currentUser })
     hanleChangeCurrentChatRoom(createChatData(user));
   };
 
-  console.log(users, `>>>>`);
-
   return (
     <li className="sub-menu">
       <a href="javascript:void(0);">
         <span className="menu-icon">🔥</span><span>개인 메세지 ({users.length})</span>
       </a>
       <ul>
-        {users.map(user => (
+        {users.length === 0 ?
+          <MenuLoading />
+          :
+          users.map(user => (
           <li>
             <a
               href="javascript:void(0)"

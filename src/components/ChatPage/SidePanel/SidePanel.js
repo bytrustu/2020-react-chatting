@@ -53,14 +53,13 @@ const SidePanel = () => {
     dispatch(changeCurrentChatRoom(id));
   };
 
-
   return (
     <aside className="sidebar">
       <Logo />
       <UserPanel />
       <div className="menu-container">
         <ul className="menu-content">
-          <Favorited />
+          <Favorited hanleChangeCurrentChatRoom={hanleChangeCurrentChatRoom}/>
           <ChatRooms room={room} hanleChangeCurrentChatRoom={hanleChangeCurrentChatRoom} />
           <DirectMessages users={users} hanleChangeCurrentChatRoom={hanleChangeCurrentChatRoom}
                           currentUser={currentUser} />
