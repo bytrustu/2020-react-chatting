@@ -10,7 +10,7 @@ import { changeCurrentChatRoom } from '../../../redux/actions/chat_action';
 const SidePanel = () => {
 
   const dispatch = useDispatch();
-  const { chatRoomRef, currentChatRoom } = useSelector(state => state.chat);
+  const { chatRoomRef, currentChatRoom, typingRef } = useSelector(state => state.chat);
   const { usersRef, currentUser } = useSelector(state => state.user);
   const [room, setRoom] = useState([]);
   const [users, setUsers] = useState([]);
@@ -50,6 +50,12 @@ const SidePanel = () => {
   };
 
   const hanleChangeCurrentChatRoom = (id) => {
+    if (currentChatRoom) {
+      typingRef
+        .child(currentChatRoom.key)
+        .child(currentUser.uid)
+        .remove();
+    }
     dispatch(changeCurrentChatRoom(id));
   };
 
@@ -59,7 +65,7 @@ const SidePanel = () => {
       <UserPanel />
       <div className="menu-container">
         <ul className="menu-content">
-          <Favorited hanleChangeCurrentChatRoom={hanleChangeCurrentChatRoom}/>
+          <Favorited hanleChangeCurrentChatRoom={hanleChangeCurrentChatRoom} />
           <ChatRooms room={room} hanleChangeCurrentChatRoom={hanleChangeCurrentChatRoom} />
           <DirectMessages users={users} hanleChangeCurrentChatRoom={hanleChangeCurrentChatRoom}
                           currentUser={currentUser} />

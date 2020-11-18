@@ -1901,3 +1901,13 @@ body {
     left: 0px;
     border-radius: 3px;
 }
+
+.typing {
+    position: absolute;
+    font-size: 10px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #a2a2a2;
+    letter-spacing: .5px;
+}

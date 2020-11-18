@@ -10,6 +10,7 @@ const MessageForm = ({
                        handleOpenImageUpload,
                        handleUploadImage,
                        fileRef,
+                       handleKeyDown,
                      }) => (
   <Form style={{ height: '100%' }} onSubmit={handleSubmit}>
     <input
@@ -24,6 +25,7 @@ const MessageForm = ({
       value={content}
       onChange={handleOnChange}
       ref={inputRef}
+      onKeyUp={handleKeyDown}
     />
     <Button variant='default'
             style={{

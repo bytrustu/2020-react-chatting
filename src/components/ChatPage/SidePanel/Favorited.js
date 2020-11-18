@@ -28,7 +28,6 @@ const Favorited = ({ hanleChangeCurrentChatRoom }) => {
   };
 
   const createChatData = (favortie) => {
-    console.log(favortie);
     const chatRoomData = {
       createBy: {
         image: currentUser.photoURL,

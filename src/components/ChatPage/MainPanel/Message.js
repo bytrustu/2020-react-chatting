@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-const Message = ({ chats }) => {
+const Message = ({ chats, typings }) => {
   const { currentUser } = useSelector(state => state.user);
   const messagesRef = useRef(null);
   const timeFromNow = timestamp => moment(timestamp).fromNow();
@@ -16,6 +16,10 @@ const Message = ({ chats }) => {
 
   return (
     <div className="chat-warp m-scrollbar force-overflow" ref={messagesRef}>
+      {
+        typings.length !== 0
+        && <p className="typing">{typings.join(', ')}님이 채팅을 작성중 입니다.</p>
+      }
       <ul className="chat-message">
         {
           chats.length !== 0 && (

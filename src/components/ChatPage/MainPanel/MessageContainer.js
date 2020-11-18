@@ -20,6 +20,7 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
   const fileRef = useRef();
 
   const { currentUser } = useSelector(state => state.user);
+  const { typingRef } = useSelector(state => state.chat);
 
   const handleOnChange = (e) => {
     setContent(e.target.value);
@@ -51,6 +52,10 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
     setLoading(true);
     try {
       await messagesRef.child(currentChatRoom.id).push().set(createMessage());
+      typingRef
+        .child(currentChatRoom.key)
+        .child(currentUser.uid)
+        .remove();
     } catch (e) {
       alert('오류가 발생 했습니다.');
     } finally {
@@ -116,6 +121,8 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
 
   const [chats, setChats] = useState([]);
   const [searchChats, setSearchChats] = useState([]);
+  const [typings, setTypings] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       messagesRef.child(currentChatRoom.id).on('value', resp => {
@@ -142,6 +149,25 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
     }
   }, [searchText]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      typingRef
+        .child(currentChatRoom.key)
+        .on('value', resp => {
+          if (resp.val()) {
+            const typings = Object.values(resp.val());
+            setTypings([]);
+            setTypings(typings);
+          } else {
+            setTypings([]);
+          }
+        });
+    };
+    if (currentChatRoom?.id) {
+      fetchData();
+    }
+  }, [currentChatRoom?.id]);
+
   const snapshotToArray = (snapshot) => {
     const returnArr = [];
     snapshot.forEach((childSnapshot) => {
@@ -150,6 +176,20 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
       returnArr.push(item);
     });
     return returnArr;
+  };
+
+  const handleKeyDown = () => {
+    if (content) {
+      typingRef
+        .child(currentChatRoom.key)
+        .child(currentUser.uid)
+        .set(currentUser.displayName);
+    } else {
+      typingRef
+        .child(currentChatRoom.key)
+        .child(currentUser.uid)
+        .remove();
+    }
   };
 
 
@@ -166,7 +206,7 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
                 chats.length === 0 ?
                   <MenuLoading />
                   :
-                  <Message chats={searchText ? searchChats : chats} />
+                  <Message chats={searchText ? searchChats : chats} typings={typings}/>
               }
             </div>
           </div>
@@ -186,6 +226,7 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
                 handleOpenImageUpload={handleOpenImageUpload}
                 handleUploadImage={handleUploadImage}
                 fileRef={fileRef}
+                handleKeyDown={handleKeyDown}
               />
             </div>
           </div>

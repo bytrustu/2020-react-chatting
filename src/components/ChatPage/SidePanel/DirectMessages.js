@@ -10,7 +10,6 @@ const DirectMessages = ({ users = [], hanleChangeCurrentChatRoom, currentUser })
   };
 
   const createChatData = (user) => {
-    console.log(user);
     const chatRoomId = getChatRoomId(user.key);
     const chatRoomData = {
       createBy: {

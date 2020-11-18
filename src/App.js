@@ -16,8 +16,8 @@ import {
 import Loading from './components/ChatPage/Loading/Loading';
 import {
   setChatRoomRef,
-  setMessagesRef,
-  setUsersRef
+  setMessagesRef, setTypingRef,
+  setUsersRef,
 } from './redux/actions/chat_action';
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
         dispatch(setChatRoomRef(firebase.database().ref('chatRooms')));
         dispatch(setMessagesRef(firebase.database().ref('messages')));
         dispatch(setUsersRef(firebase.database().ref('users')));
+        dispatch(setTypingRef(firebase.database().ref('typing')));
         dispatch(setUser(user));
         history.push('/');
       } else {
