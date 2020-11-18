@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import firebase from '../../../firebase';
 
 const MakeRoomModal = ({ show, setShow }) => {
   const user = useSelector(state => state.user.currentUser);

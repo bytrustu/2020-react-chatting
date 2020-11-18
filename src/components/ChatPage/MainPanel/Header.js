@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import firebase from '../../../firebase';
-import { setUser } from '../../../redux/actions/user_action';
 import MakeRoomModal from '../Modal/MakeRoomModal';
 
 const Header = ({ setSerachText }) => {

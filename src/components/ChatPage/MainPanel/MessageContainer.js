@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BsTextarea } from 'react-icons/all';
-import { Button, Form } from 'react-bootstrap';
 import ProgressBar from '../Loading/Progress';
 import Message from './Message';
 import firebase from '../../../firebase';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import mime from 'mime-types';
 import { v4 as uuid } from 'uuid';
 import MessageForm from './MessageForm';
@@ -35,13 +33,11 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
         image: currentUser.photoURL,
       },
     };
-
     if (fileUrl !== null) {
       message['image'] = fileUrl;
     } else {
       message['content'] = content;
     }
-
     return message;
   };
   const handleSubmit = async (e) => {
@@ -80,11 +76,10 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
       setLoading(true);
 
       const fileName = `${uuid()}-${file.name}`;
-      const folder = currentChatRoom.private ? 'private' : 'public';
       const uploadTask = firebase
         .storage()
         .ref()
-        .child(`message/${folder}/${fileName}`)
+        .child(`message/${fileName}`)
         .put(file, metadata);
 
       uploadTask.on('state_change',
@@ -191,7 +186,6 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
         .remove();
     }
   };
-
 
   return (
     <>

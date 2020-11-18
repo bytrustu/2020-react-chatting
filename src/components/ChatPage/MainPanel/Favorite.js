@@ -55,10 +55,10 @@ const Favorite = ({ handleFavorite }) => {
 
 
   return isFavorite ?
-    <BsHeartFill class="ml-2 text-danger" style={{ cursor: 'pointer' }} onClick={handleFavorite}
+    <BsHeartFill className="ml-2 text-danger" style={{ cursor: 'pointer' }} onClick={handleFavorite}
                  onClick={handleChangeFavorite} />
     :
-    <BsHeart class="ml-2 text-dark" style={{ cursor: 'pointer' }} onClick={handleFavorite}
+    <BsHeart className="ml-2 text-dark" style={{ cursor: 'pointer' }} onClick={handleFavorite}
              onClick={handleChangeFavorite} />;
 };
 export default Favorite;

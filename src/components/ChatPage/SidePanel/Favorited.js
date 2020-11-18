@@ -59,7 +59,7 @@ const Favorited = ({ hanleChangeCurrentChatRoom }) => {
             <MenuLoading />
             :
             favoriteChatRooms.map(favorite => (
-              <li>
+              <li key={favorite.key}>
                 <a href="javascript:void(0)"
                    title={favorite.name}
                    key={favorite.key}

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import MenuLoading from '../Loading/MenuLoading';
-import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import Favorite from './Favorite';
-import { useSelector } from 'react-redux';
 
 const MessageHeader = ({ currentChatRoom }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const handleFavorite = () => setIsFavorite(!isFavorite);
   return (
 
@@ -18,7 +17,7 @@ const MessageHeader = ({ currentChatRoom }) => {
                 {currentChatRoom.name}
                 {
                   !currentChatRoom.private
-                  && <Favorite handleFavorite={handleFavorite}/>
+                  && <Favorite handleFavorite={handleFavorite} isFavorite={isFavorite}/>
                 }
 
                 <span className="font-weight-normal d-inline-block position-absolute"

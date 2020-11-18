@@ -39,7 +39,7 @@ const DirectMessages = ({ users = [], hanleChangeCurrentChatRoom, currentUser })
           <MenuLoading />
           :
           users.map(user => (
-          <li>
+          <li key={user.key}>
             <a
               href="javascript:void(0)"
               title={user.name}
