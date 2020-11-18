@@ -1,4 +1,10 @@
-import { ADD_CHAT_ROOM, CHANGE_CURRENT_CHAT_ROOM, SET_CHAT_ROOM_REF, SET_MESSAGES_REF } from '../../types/types';
+import {
+  ADD_CHAT_ROOM,
+  CHANGE_CURRENT_CHAT_ROOM,
+  SET_CHAT_ROOM_REF,
+  SET_MESSAGES_REF,
+  SET_USERS_REF
+} from '../../types/types';
 
 export const setChatRoomRef = (ref) => ({
   type: SET_CHAT_ROOM_REF,
@@ -7,6 +13,11 @@ export const setChatRoomRef = (ref) => ({
 
 export const setMessagesRef = (ref) => ({
   type: SET_MESSAGES_REF,
+  payload: ref,
+});
+
+export const setUsersRef = (ref) => ({
+  type: SET_USERS_REF,
   payload: ref,
 });
 

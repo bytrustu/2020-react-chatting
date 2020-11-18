@@ -1,13 +1,7 @@
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import MenuLoading from '../Loading/MenuLoading';
-import { changeCurrentChatRoom } from '../../../redux/actions/chat_action';
 
-const ChatRooms = ({ room }) => {
-  const dispatch = useDispatch();
-  const hanleChangeCurrentChatRoom = (id) => {
-    dispatch(changeCurrentChatRoom(id));
-  }
+const ChatRooms = ({ room, hanleChangeCurrentChatRoom }) => {
 
   return (
     <li className="sub-menu">
@@ -16,11 +10,16 @@ const ChatRooms = ({ room }) => {
         <i className="fas fa-caret-down menu-arrow float-right" />
       </a>
       <ul>
-        {room.length === 0 ? <MenuLoading /> : room.map(element => <li>
-          <a href="#" title={element.name} key={element.id} onClick={() => hanleChangeCurrentChatRoom(element)}>
-            <span># {element.name}</span>
-          </a>
-        </li>)}
+        {room.length === 0 ? <MenuLoading /> : room.map(element => {
+          element = { ...element, private: false };
+          return (
+            <li>
+              <a href="#" title={element.name} key={element.id} onClick={() => hanleChangeCurrentChatRoom(element)}>
+                <span># {element.name}</span>
+              </a>
+            </li>
+          )
+        })}
       </ul>
     </li>
 

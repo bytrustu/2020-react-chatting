@@ -28,6 +28,7 @@ const MessageHeader = ({ currentChatRoom }) => {
                         left: '0',
                         top: '30px',
                         fontSize: '12px',
+                        minWidth: '400px'
                       }}>
                 🔖 <span className="d-inline-block ml-2">{currentChatRoom.description}</span>
               </span>

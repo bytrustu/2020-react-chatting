@@ -74,10 +74,11 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
       setLoading(true);
 
       const fileName = `${uuid()}-${file.name}`;
+      const folder = currentChatRoom.private ? 'private' : 'public';
       const uploadTask = firebase
         .storage()
         .ref()
-        .child(`message/public/${fileName}`)
+        .child(`message/${folder}/${fileName}`)
         .put(file, metadata);
 
       uploadTask.on('state_change',
