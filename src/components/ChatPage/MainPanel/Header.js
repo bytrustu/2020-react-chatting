@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import firebase from '../../../firebase';
 import MakeRoomModal from '../Modal/MakeRoomModal';
 
@@ -13,7 +13,9 @@ const Header = ({ setSerachText }) => {
   };
 
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+  }
   const onChangeSearchText = (e) => {
     setSerachText(e.target.value);
   }
@@ -22,8 +24,8 @@ const Header = ({ setSerachText }) => {
     <>
       <div className="header">
         <div className="task-container">
-          <span className="btn-header" onClick={handleShow}>🔖</span>
-          <span className="btn-header ml-2" onClick={onLogout}>📌</span>
+          <span className="btn-header" onClick={handleShow} title="채팅방 개설">🙏</span>
+          <span className="btn-header ml-2" onClick={onLogout} title="로그아웃">🔴</span>
           <div className="search-group">
             <input id="search-fld" className="ml-1" type="text" placeholder="메세지 검색" onChange={onChangeSearchText}/>
             <button type="button" id="search-header" className="align-middle">🔍</button>

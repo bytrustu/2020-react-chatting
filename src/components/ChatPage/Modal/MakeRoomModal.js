@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
@@ -8,8 +8,10 @@ const MakeRoomModal = ({ show, setShow }) => {
     name: '',
     description: ''
   });
+
   const { roomName, description } = inputs;
   const [key, setKey] = useState('');
+  const inputRef = useRef();
 
   const { chatRoomRef } = useSelector(state => state.chat);
 
@@ -56,6 +58,12 @@ const MakeRoomModal = ({ show, setShow }) => {
     }
   }
 
+  useEffect(() => {
+    if (show) {
+      inputRef.current.focus();
+    }
+  }, [show])
+
 
   useEffect(() => {
     if (key) {
@@ -73,7 +81,7 @@ const MakeRoomModal = ({ show, setShow }) => {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>채팅방 이름</Form.Label>
-              <Form.Control type="text" name="roomName" placeholder="채팅방 이름 작성" onChange={onChangeInput}/>
+              <Form.Control type="text" name="roomName" placeholder="채팅방 이름 작성" onChange={onChangeInput} ref={inputRef}/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">

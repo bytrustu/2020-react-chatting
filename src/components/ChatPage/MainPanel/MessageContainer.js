@@ -45,6 +45,7 @@ const MessageContainer = ({ currentChatRoom, messagesRef, searchText }) => {
     if (!content.trim()) {
       return alert('채팅을 작성해주세요.');
     }
+
     setLoading(true);
     try {
       await messagesRef.child(currentChatRoom.id).push().set(createMessage());

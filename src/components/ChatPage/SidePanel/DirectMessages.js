@@ -45,7 +45,7 @@ const DirectMessages = ({ users = [], hanleChangeCurrentChatRoom, currentUser })
               title={user.name}
               key={user.key}
               onClick={() => handleChangePrivateChatRoom(user)}>
-              <span># {user.name} {user.status === 'offline' ? '🔴' : '🟢'}</span>
+              <span># {user.name}</span>
             </a>
           </li>
         ))}

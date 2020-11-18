@@ -36,8 +36,7 @@ const SidePanel = () => {
         setUsers([]);
         setUsers(snapshotToArray(snapshot)
           .filter(user => user.key !== currentUser.uid)
-          .map(user => ({ ...user, status: 'offline' }))
-          .sort((a, b) => a.status === 'online' ? -1 : 1),
+          .map(user => ({ ...user })),
         );
       });
     };

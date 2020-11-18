@@ -43,13 +43,13 @@ function App() {
   }, []);
 
 
-  return isLoading ? <Loading/> : (
+  return isLoading ? <Loading /> : (
     <Switch>
       <Route exact path="/" component={ChatPage} exact />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />
     </Switch>
-  )
+  );
 }
 
 export default App;
