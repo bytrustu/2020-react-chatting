@@ -26,11 +26,8 @@ const MakeRoomModal = ({ show, setShow }) => {
 
   const handleClose = () => setShow(false);
   const handleSubmit = (e) => {
-    console.log(`check 1`);
     e.preventDefault();
-    console.log(roomName, description);
     if (isFormValid(roomName, description)) {
-
       setKey(chatRoomRef.push().key);
     }
   }

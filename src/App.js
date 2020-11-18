@@ -14,7 +14,7 @@ import {
   setUser,
 } from './redux/actions/user_action';
 import Loading from './components/ChatPage/Loading/Loading';
-import { setChatRoomRef } from './redux/actions/chat_action';
+import { setChatRoomRef, setMessagesRef } from './redux/actions/chat_action';
 
 function App() {
   const history = useHistory();
@@ -26,6 +26,7 @@ function App() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         dispatch(setChatRoomRef(firebase.database().ref('chatRooms')));
+        dispatch(setMessagesRef(firebase.database().ref('messages')));
         dispatch(setUser(user));
         history.push('/');
       } else {

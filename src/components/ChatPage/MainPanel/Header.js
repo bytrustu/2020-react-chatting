@@ -3,7 +3,7 @@ import firebase from '../../../firebase';
 import { setUser } from '../../../redux/actions/user_action';
 import MakeRoomModal from '../Modal/MakeRoomModal';
 
-const Header = () => {
+const Header = ({ setSerachText }) => {
 
   const onLogout = async () => {
     try {
@@ -15,6 +15,9 @@ const Header = () => {
 
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
+  const onChangeSearchText = (e) => {
+    setSerachText(e.target.value);
+  }
 
   return (
     <>
@@ -23,7 +26,7 @@ const Header = () => {
           <span className="btn-header" onClick={handleShow}>🔖</span>
           <span className="btn-header ml-2" onClick={onLogout}>📌</span>
           <div className="search-group">
-            <input id="search-fld" className="ml-1" type="text" placeholder="메세지 검색" />
+            <input id="search-fld" className="ml-1" type="text" placeholder="메세지 검색" onChange={onChangeSearchText}/>
             <button type="button" id="search-header" className="align-middle">🔍</button>
           </div>
         </div>

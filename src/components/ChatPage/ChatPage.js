@@ -5,6 +5,8 @@ import MakeRoomModal from './Modal/MakeRoomModal';
 import firebase from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { addChatRoom, setChatRoomRef } from '../../redux/actions/chat_action';
+import ProgressBar from './Loading/Progress';
+import Progress from './Loading/Progress';
 
 const ChatPage = () => {
   // const { chatRoomRef } = useSelector(state => state.chat);

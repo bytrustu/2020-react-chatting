@@ -29,6 +29,7 @@ const SidePanel = () => {
   }, []);
 
   const snapshotToArray = (snapshot) => {
+    if (snapshot?.val() === null) return [];
     return Object.values(snapshot.val());
   }
 

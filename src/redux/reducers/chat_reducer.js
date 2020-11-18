@@ -1,7 +1,8 @@
-import { ADD_CHAT_ROOM, CHANGE_CURRENT_CHAT_ROOM, SET_CHAT_ROOM_REF } from '../../types/types';
+import { ADD_CHAT_ROOM, CHANGE_CURRENT_CHAT_ROOM, SET_CHAT_ROOM_REF, SET_MESSAGES_REF } from '../../types/types';
 
 const initialUserState = {
   chatRoomRef: null,
+  messagesRef: null,
   chatRoomList: null,
   currentChatRoom: null,
 
@@ -13,6 +14,12 @@ export default function(state = initialUserState, action) {
       return {
         ...state,
         chatRoomRef: action.payload
+      };
+    }
+    case SET_MESSAGES_REF: {
+      return {
+        ...state,
+        messagesRef: action.payload
       };
     }
     case ADD_CHAT_ROOM: {
